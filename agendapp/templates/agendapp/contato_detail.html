@@ -1,0 +1,26 @@
+{% extends 'master.html' %}
+
+{% block title %}
+	Detalhes do contato
+{% endblock title %}
+
+{% block content %}
+    <div class="row">
+    	<div class="col-lg-12 col=md-12 col-sm-12">
+		    {% if contato.nome %}        
+		    	<h1>{{ contato.nome }}</h1>
+		    	{{contato.telefone1}}<br />
+		    	{{contato.telefone2}}<br />
+		    	{{contato.email}}<br />
+		    	{{contato.endereco}}<br />
+		    	{{contato.dtnasc}}<br />
+		    	{{contato.obs}}<br />
+
+		    {% endif %}
+		    <a class="btn btn-default" href="{% url 'contato_edit' pk=contato.pk %}">
+		    	<span class="glyphicon glyphicon-pencil"></span>
+		    </a>
+		    <p>{{ contato.nome|linebreaksbr }}</p>
+    	</div>
+    </div>
+{% endblock %}

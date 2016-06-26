@@ -1,0 +1,58 @@
+{% extends "master.html" %}
+
+{% block title %}
+	Agenda
+{% endblock title %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-lg-6 col-md-12 col-sm-12">
+			<h1>Agenda</h1>			
+		    {% if msg %}   
+		    	{% if type == "success" %}
+		    		<div class="alert alert-success">
+		    		{{ msg}}
+		    	{% else %}
+		    		<div class="alert alert-danger">
+		    		{{ msg}}
+		    	{% endif %}
+		    	</div>
+		    {% endif %}
+			<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Tel.1º</th>
+					<th>Tel.2º</th>
+					<th>Email</th>
+					<th>Endereço</th>
+					<th>Dt.Nasc.</th>
+					<th>Obs</th>
+					<th>Detalhes</th>
+					<th>Editar</th>
+					<th>Excluir</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for c in contatos %}
+				  <tr>
+				    <td>{{ c.nome }}</td>
+				    <td>{{ c.telefone1 }}</td>
+				    <td>{{ c.telefone2 }}</td>
+				    <td>{{ c.email }}</td>
+				    <td>{{ c.endereco }}</td>
+				    <td>{{ c.dtnasc|date }}</td>
+				    <td>{{ c.obs }}</td>
+				    <td><a href="/contato/{{c.id}}" class="btn btn-primary">Detalhes</a></td>
+				    <td><a href="/contato/{{c.id}}/edit" class="btn btn-warning">Editar</a></td>
+				    <td><a href="/contato/{{c.id}}/delete" class="btn btn-danger">Excluir</a></td>
+				  </tr>
+
+				{% empty %}
+				<tr><td colspan=10>Nenhum contato para listar</td></tr>
+				{% endfor %}
+			</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock content %}
